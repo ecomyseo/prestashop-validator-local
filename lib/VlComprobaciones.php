@@ -222,6 +222,12 @@ class VlComprobaciones
                 continue 2;
             }
         }
+        // config_xx.xml de la raíz: los genera PrestaShop al instalar (medido, informe 3785388)
+        foreach ($m->ficheros as $f) {
+            if (preg_match('#^/config_[a-z]{2}\.xml$#i', $f)) {
+                $p->addFile('STR_CONFIG_LANG', $this->msg('STR_CONFIG_LANG', $f), $f);
+            }
+        }
         // Ficheros innecesarios en producción
         $sobran = array_map('strtolower', $m->reglas['Structure']['Uneeded files on production']);
         $vistos = array();
@@ -358,17 +364,10 @@ class VlComprobaciones
         // comentarios en castellano y Errors en verde). Lo que mira es la descripción: STR_ENGLISH.
         // Clase Context (medido, informe 3785354): un aviso por cada línea con Context::
         if ($m->llegaA('8.0')) {
+            // Por LÍNEAS del fichero, no por el árbol: el oficial marca también una línea comentada
+            // («/*  $x = Context::getContext()...», informe 3785388).
             foreach ($this->phps() as $f) {
-                $lineas = array();
-                foreach (array(Node\Expr\StaticCall::class, Node\Expr\StaticPropertyFetch::class, Node\Expr\ClassConstFetch::class) as $tipo) {
-                    foreach ($this->nodos($f, $tipo) as $n) {
-                        if ($n->class instanceof Node\Name && strtolower(ltrim($n->class->toString(), '\\')) === 'context') {
-                            $lineas[$n->getStartLine()] = true;
-                        }
-                    }
-                }
-                ksort($lineas);
-                foreach (array_keys($lineas) as $l) {
+                foreach (self::lineasCon($m->leer($f), '#(?<![A-Za-z0-9_])Context::#') as $l) {
                     $this->code($p, 'ERR_CONTEXT', $f, $l);
                 }
             }
@@ -801,6 +800,53 @@ class VlComprobaciones
                 $this->code($p, 'OPT_HTML_IN_PHP', $principal, $l);
             }
         }
+        // Finales de línea mezclados (aviso de PHP_CodeSniffer, línea 1; medido, informe 3785388)
+        foreach ($this->phpsDeCodeSniffer() as $f) {
+            if (self::finesMezclados($m->leer($f))) {
+                $this->code($p, 'OPT_MIXED_EOL', $f, 1);
+            }
+        }
+    }
+
+    /** PHP que pasa por PHP_CodeSniffer en el oficial (Optimizations y Licenses salen con la misma lista). */
+    private function phpsDeCodeSniffer(): array
+    {
+        $out = array();
+        foreach ($this->m->conExtension(array('php')) as $f) {
+            if ($this->m->esIgnorado(dirname($f)) || preg_match('#^(/views/(css|js|img|fonts)|/translations)(/|$)#i', dirname($f))) {
+                continue;
+            }
+            $out[] = $f;
+        }
+
+        return $out;
+    }
+
+    /**
+     * Como PHP_CodeSniffer: el final de línea del fichero es el PRIMERO que aparece; si al quitarlo
+     * queda algún \r o \n suelto, el fichero los mezcla.
+     */
+    public static function finesMezclados(string $c): bool
+    {
+        if (!preg_match('/\r\n?|\n/', $c, $mm)) {
+            return false;
+        }
+        $resto = str_replace($mm[0], '', str_replace('\\', '', $c));
+
+        return strpos($resto, "\n") !== false || strpos($resto, "\r") !== false;
+    }
+
+    /** Números de línea (desde 1) cuyo texto casa con $regex. */
+    public static function lineasCon(string $codigo, string $regex): array
+    {
+        $out = array();
+        foreach (preg_split('/\r\n|\r|\n/', $codigo) as $i => $linea) {
+            if (preg_match($regex, $linea)) {
+                $out[] = $i + 1;
+            }
+        }
+
+        return $out;
     }
 
     /**
@@ -876,7 +922,7 @@ class VlComprobaciones
                 continue;
             }
             foreach (preg_split("/\r\n|\n|\r/", $t[1]) as $i => $trozo) {
-                if (preg_match('#<(div|p|span|h[1-6])(\s|>|/)#i', $trozo)) {
+                if (preg_match('#<(div|p|span|h[1-6]|script)(\s|>|/)#i', $trozo)) {
                     $lineas[$t[2] + $i] = true;
                 }
             }
@@ -960,7 +1006,17 @@ class VlComprobaciones
                 if (preg_match('#^(/views/(css|js|img|fonts)|/translations)(/|$)#i', dirname($f))) {
                     continue;
                 }
+                if (self::finesMezclados($c)) {
+                    $p->addCode('LIC_MIXED_EOL', $f, $this->msg('LIC_MIXED_EOL'), 1, $m->linea($f, 1), $m->bloque($f, 1, 3));
+                }
                 $estado = self::docDeFichero($c);
+                if ($estado === 'ok' || $estado === 'hueco') {
+                    // @author obligatorio en el bloque de fichero; se marca en la línea de su «*/» (medido, 3785388)
+                    $doc = self::bloqueDeFichero($c);
+                    if ($doc !== null && !preg_match('#@author\b#', $doc[0])) {
+                        $p->addCode('LIC_FILE_AUTHOR', $f, $this->msg('LIC_FILE_AUTHOR'), $doc[1], $m->linea($f, $doc[1]), $m->bloque($f, $doc[1], 3));
+                    }
+                }
                 if ($estado === 'falta' || $estado === 'estilo') {
                     $txt = $estado === 'estilo' ? 'You must use "/**" style comments for a file comment' : $this->msg('LIC_FILE_DOC');
                     $p->addCode('LIC_FILE_DOC', $f, $txt, 1, $m->linea($f, 1), $m->bloque($f, 1, 3));
@@ -984,6 +1040,31 @@ class VlComprobaciones
                 }
             }
         }
+    }
+
+    /** Primer bloque /** *\/ tras <?php: [texto, línea de su «*\/»], o null. */
+    public static function bloqueDeFichero(string $codigo): ?array
+    {
+        $abierto = false;
+        foreach (@token_get_all($codigo) as $t) {
+            if (!is_array($t)) {
+                return null;
+            }
+            if ($t[0] === T_OPEN_TAG) {
+                $abierto = true;
+                continue;
+            }
+            if (!$abierto || $t[0] === T_WHITESPACE) {
+                continue;
+            }
+            if ($t[0] === T_DOC_COMMENT) {
+                return array($t[1], $t[2] + preg_match_all('/\r\n|\r|\n/', $t[1]));
+            }
+
+            return null;
+        }
+
+        return null;
     }
 
     /**

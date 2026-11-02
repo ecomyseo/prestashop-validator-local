@@ -79,7 +79,12 @@ $casos = array(
     'ERR_PS_VERSION_CONDITION' => array('errors', array('cambiar' => $codigo("        if (_PS_VERSION_ >= '1.7') {\n            \$ok = true;\n        }"))),
     'STR_ENGLISH' => array('structure', array('cambiar' => array('/vlgoalbase.php' => array("\$this->l('Clean module used by the local validator tests.')", "\$this->l('Sustituye fichas sin stock por recomendaciones y recupera productos desactivados.')")))),
     'OPT_HTML_IN_PHP' => array('optimizations', array('cambiar' => $codigo("        \$html = '<div class=\"vlgoalbase\">Hello</div>';"))),
-    'ERR_CONTEXT' => array('errors', array('cambiar' => $codigo('        $shop = Context::getContext()->shop;'))),
+    // medido en el oficial (3785388): una línea COMENTADA con Context:: también cuenta
+    'ERR_CONTEXT' => array('errors', array('cambiar' => $codigo('        /* $shop = Context::getContext()->shop; */'))),
+    'STR_CONFIG_LANG' => array('structure', array('poner' => array('/config_es.xml' => "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<module>\n<name>vlgoalbase</name>\n</module>\n"))),
+    'OPT_MIXED_EOL' => array('optimizations', array('poner' => array('/classes/VlgoalbaseMixed.php' => "<?php\n" . $CAB . "if (!defined('_PS_VERSION_')) {\r\n    exit;\r\n}\n\nclass VlgoalbaseMixed\n{\n}\n"))),
+    'LIC_MIXED_EOL' => array('licenses', array('poner' => array('/classes/VlgoalbaseMixed.php' => "<?php\n" . $CAB . "if (!defined('_PS_VERSION_')) {\r\n    exit;\r\n}\n\nclass VlgoalbaseMixed\n{\n}\n"))),
+    'LIC_FILE_AUTHOR' => array('licenses', array('poner' => array('/classes/VlgoalbaseNoAuthor.php' => "<?php\n/**\n * Goal base helper without author\n */\nif (!defined('_PS_VERSION_')) {\n    exit;\n}\n\nclass VlgoalbaseNoAuthor\n{\n}\n"))),
     'CMP_DEPRECATED' => array('compatibility', array('cambiar' => $codigo("        \$enabled = Module::isEnabled('ps_searchbar');"))),
     'LIC_FILE_DOC_SPACING' => array('licenses', array('cambiar' => array('/sql/install.php' => array("<?php\n/**", "<?php\n\n/**")))),
     'ERR_CONFLICT_MARKS' => array('errors', array('cambiar' => array('/views/js/front.js' => array("document.addEventListener", "<<<<<<< HEAD\ndocument.addEventListener")))),
@@ -130,6 +135,10 @@ $negativos = array(
         "        // Solo desde actionDispatcherBefore, antes de que se construya ningún controlador.\n        \$type = 'home_default';"))),
     'comentarios en inglés y código documentado' => array('errors', array('cambiar' => $codigo(
         "        // Assign the title to the template before rendering the block.\n        /* The value comes from the module configuration. */"))),
+    'medido en el oficial (3785388): ni @copyright ni @license son obligatorios, solo @author' => array('licenses', array('poner' => array(
+        '/classes/VlgoalbaseOnlyAuthor.php' => "<?php\n/**\n * Goal base helper\n *\n * @author    Ecom Experts <ecomyseo@gmail.com>\n */\nif (!defined('_PS_VERSION_')) {\n    exit;\n}\n\nclass VlgoalbaseOnlyAuthor\n{\n}\n"))),
+    'todo en CRLF no es mezclar' => array('optimizations,licenses', array('poner' => array(
+        '/classes/VlgoalbaseCrlf.php' => str_replace("\n", "\r\n", "<?php\n" . $CAB . "if (!defined('_PS_VERSION_')) {\n    exit;\n}\n\nclass VlgoalbaseCrlf\n{\n}\n")))),
     'serialize en upgrade/ (el oficial lo ignora ahí)' => array('security', array('poner' => array(
         '/upgrade/upgrade-1.1.0.php' => $PHP . "function upgrade_module_1_1_0(\$module)\n{\n    return (bool) serialize([1]);\n}\n",
         '/upgrade/index.php' => "<?php\n\n" . $CAB . "header('Location: ../');\nexit;\n"))),
@@ -339,6 +348,53 @@ foreach ($casosGuarda as $nombre => $c) {
     $nuevo = (string) VlArreglar::insertarGuardia($src);
     $pg = strpos($nuevo, "if (!defined('_PS_VERSION_'))");
     $ok = $pg !== false && strpos($nuevo, $antes) < $pg && strpos($nuevo, $despues) > $pg;
+    if (!$ok) {
+        ++$fallos;
+    }
+    echo '   ' . ($ok ? '[OK] ' : '[XX] ') . $nombre . PHP_EOL;
+}
+
+// 4b2. ARREGLAR deja al 100 % lo que sabe arreglar ------------------------------------
+if (!$rapido) {
+    echo $linea . PHP_EOL . "4b2. --arreglar sobre una copia con config_es.xml, EOL mezclados y un bloque sin @author\n";
+    $dirArr = $tmpRaiz . '/arreglar/vlgoalbase';
+    vlCopiar($base, $dirArr);
+    file_put_contents($dirArr . '/config_es.xml', "<?xml version=\"1.0\"?>\n<module><name>vlgoalbase</name></module>\n");
+    file_put_contents($dirArr . '/vlgoalbase.php', preg_replace('/\n/', "\r\n", (string) file_get_contents($dirArr . '/vlgoalbase.php'), 3));
+    file_put_contents($dirArr . '/sql/install.php', preg_replace('#\s*\* @author[^\n]*#', '', (string) file_get_contents($dirArr . '/sql/install.php'), 1));
+    $antes = VlValidador::totales($validador->validar($dirArr));
+    (new VlArreglar($raiz))->arreglar($dirArr);
+    $res = $validador->validar($dirArr);
+    $desp = VlValidador::totales($res);
+    $quedan = array();
+    foreach ($res['pasos'] as $p) {
+        foreach ($p->goals as $g => $nn) {
+            if ($nn) {
+                $quedan[] = $g . ' ' . $nn;
+            }
+        }
+    }
+    $ok = $antes['error'] + $antes['warning'] > 0 && $desp['error'] + $desp['warning'] + $desp['fallos'] === 0;
+    if (!$ok) {
+        ++$fallos;
+    }
+    echo '   ' . ($ok ? '[OK] ' : '[XX] ') . 'antes ' . ($antes['error'] + $antes['warning']) . ' resultados, después ' . ($desp['error'] + $desp['warning'])
+        . ($quedan ? ' (quedan: ' . implode(', ', $quedan) . ')' : '') . PHP_EOL;
+}
+
+// 4c. Medidas sueltas del informe 3785388 ---------------------------------------------
+echo $linea . PHP_EOL . "4c. MEDIDAS SUELTAS (informe 3785388)\n";
+$sueltas = array(
+    'todo LF no mezcla' => !VlComprobaciones::finesMezclados("a\nb\n"),
+    'todo CRLF no mezcla' => !VlComprobaciones::finesMezclados("a\r\nb\r\n"),
+    'CRLF y luego LF mezcla' => VlComprobaciones::finesMezclados("a\r\nb\nc"),
+    'LF y luego CRLF mezcla' => VlComprobaciones::finesMezclados("a\nb\r\nc"),
+    '<script en una cadena del PHP principal es HTML' => VlComprobaciones::lineasConHtml("<?php\n\$js = '<script>var a = 1;</script>';\n") === array(2),
+    '<strong>, <a>, <table> siguen sin contar' => VlComprobaciones::lineasConHtml("<?php\n\$x = '<strong><a href=\"#\">y</a></strong><table></table>';\n") === array(),
+    'Context:: en un comentario cuenta; MyContext:: no' => VlComprobaciones::lineasCon("<?php\n/* \$c = Context::getContext(); */\n\$d = MyContext::get();\n\$e = \\Context::getContext();\n", '#(?<![A-Za-z0-9_])Context::#') === array(2, 4),
+    'línea del «*/» del bloque de cabecera' => VlComprobaciones::bloqueDeFichero("<?php\n/**\n * a\n * b\n */\nclass X {}\n")[1] === 5,
+);
+foreach ($sueltas as $nombre => $ok) {
     if (!$ok) {
         ++$fallos;
     }

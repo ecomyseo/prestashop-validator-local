@@ -74,8 +74,9 @@ entonces se da.
 
 1. Arreglos automáticos seguros:
    `"{{PHP}}" "{{VALIDATOR_DIR}}/validar.php" "<carpeta>" --arreglar`
-   (`index.php` en cada carpeta, `.htaccess`, guarda `_PS_VERSION_`, PHP CS Fixer con la configuración
-   del oficial y cabeceras de licencia). Solo sobre carpetas, no sobre ZIP.
+   (`index.php` en cada carpeta, `.htaccess`, guarda `_PS_VERSION_`, cabeceras de licencia con `@author`,
+   `config_xx.xml` fuera, finales de línea a LF y PHP CS Fixer con la configuración del oficial). Solo sobre
+   carpetas, no sobre ZIP. **Si otra sesión está trabajando en el módulo, no se toca: se avisa.**
 2. Lo que quede, a mano, **goal a goal** con la tabla de abajo.
 3. Volver a validar hasta que salga `RESULTADO: 100 % OK` y código de salida 0. No se da por terminado
    antes.
@@ -101,6 +102,7 @@ medio** (con ella, el oficial da «There must be no blank lines before the file 
 | STR_MISPLACED | CSS en `views/css`, JS en `views/js`, imágenes en `views/img`, TPL en `views/templates` |
 | STR_ENGLISH | redactar `$this->description` en inglés (la traducción va en los ficheros de traducción) |
 | STR_UNNEEDED | quitar `.git`, `.DS_Store`, `Thumbs.db`, `node_modules`… del paquete |
+| STR_CONFIG_LANG | borrar los `config_xx.xml` de la raíz (`config_es.xml`…): los genera PrestaShop al instalar (`--arreglar` lo hace) |
 | ERR_PHP_PARSE / ERR_SMARTY_PARSE | corregir la sintaxis indicada |
 | ERR_INSTALL_RETURN | `install()` y `uninstall()` devuelven `true`/`false` |
 | ERR_SQL_IF_EXISTS | `CREATE TABLE IF NOT EXISTS` y `DROP TABLE IF EXISTS` |
@@ -111,7 +113,7 @@ medio** (con ella, el oficial da «There must be no blank lines before the file 
 | ERR_PS9_LIBRARY / ERR_PS9_ANNOTATION / ERR_PS9_CONFIGURATION / ERR_PS9_ADMIN_CONTROLLER | sustituir por lo que trae PrestaShop 9 (funciones nativas, atributos PHP, `PrestaShopAdminController`) |
 | ERR_OLD_JQUERY | quitar el jQuery embebido y usar el de PrestaShop |
 | ERR_PS_VERSION_CONDITION | comparar con `version_compare(_PS_VERSION_, 'X', '>=')` |
-| ERR_CONTEXT | `$this->context` en módulos y controladores en vez de `Context::getContext()` |
+| ERR_CONTEXT | `$this->context` en módulos y controladores en vez de `Context::getContext()`. Cuenta cada LÍNEA con `Context::`, también comentada: el código comentado se borra |
 | ERR_CONFLICT_MARKS / ERR_BOM / ERR_ENCODING / ERR_CONFIG_XML_PARSE | el oficial marca TODA línea que empiece por `<<<`, `===` o `>>>`, también separadores `=====` de un `readme.txt`: cambiarlos o quitar el fichero; quitar el BOM, guardar en UTF-8, XML válido |
 | (sin goal) carpetas que no son del módulo | `.claude/`, documentación `.md`, `tmp/`, copias: no deben ir en el ZIP (el validator les pide `index.php` y cabeceras como a todo lo demás) |
 | CMP_PHPSTAN | corregir cada error de PHPStan (clases, métodos o constantes que no existen en esa versión) |
@@ -119,10 +121,12 @@ medio** (con ella, el oficial da «There must be no blank lines before the file 
 | OPT_PS_LIBRARY | usar la librería JS que ya trae PrestaShop |
 | OPT_PHP_EXTENSION | `if (extension_loaded('curl'))` (o `function_exists`) antes de usar cURL o SOAP |
 | OPT_EMPTY_FILE | borrar los ficheros vacíos |
-| OPT_HTML_IN_PHP | el HTML (`<div`, `<p`, `<span`, `<h1`…`<h6`) del PHP principal pasa a una plantilla `.tpl` |
+| OPT_HTML_IN_PHP | el HTML (`<div`, `<p`, `<span`, `<h1`…`<h6`, `<script`) de las cadenas del PHP principal pasa a una plantilla `.tpl` (el JavaScript, a `views/js` con `Media::addJsDef` para los datos) |
+| OPT_MIXED_EOL / LIC_MIXED_EOL | cada PHP con un solo tipo de final de línea: todo LF (`--arreglar` lo hace). Sale en las dos pestañas a la vez |
 | TRA_QUOTES_PHP / TRA_LITERAL_PHP | `$this->l('Texto literal')` con comillas simples y sin variables |
 | TRA_QUOTES_TPL / TRA_MOD_TPL | `{l s='Texto' d='Modules.Mimodulo.Admin'}` (o `mod='mimodulo'`) con comillas simples |
 | LIC_FILE_DOC / LIC_FILE_DOC_SPACING | bloque `/** … */` justo en la línea siguiente a `<?php` en cada PHP (también `index.php`). Si lo siguiente al bloque es `class`, `function`, `include`/`require`… ese bloque cuenta como de ese elemento y sigue faltando el de fichero: entre los dos tiene que ir otra cosa (la guarda `_PS_VERSION_`, o en un cron una línea `// …` antes del `include` de `config.inc.php`) |
+| LIC_FILE_AUTHOR | el bloque de cabecera de cada PHP lleva `@author` (se marca en la línea de su `*/`; `--arreglar` lo añade). `@copyright` y `@license` no se exigen, pero van por norma |
 | LIC_HEADER | cabecera de licencia en cada JS (`/** */`) y TPL (`{** *}`) |
 | LIC_YEAR / LIC_TYPE | un rango de años tiene que acabar en el año actual («2007-2021» es aviso; mejor `Since 2007`); licencia AFL, OSL, MIT, BSD, Apache, ISC o EUPL en `@license` |
 | SEC_HTACCESS | `.htaccess` en la raíz del módulo (`--arreglar` lo crea) |
@@ -134,6 +138,17 @@ medio** (con ella, el oficial da «There must be no blank lines before the file 
 | SEC_SMARTY_ESCAPE / SEC_SMARTY_STRVAL | `{$var|escape:'html':'UTF-8'}` (o `|intval`, `|floatval`…) y sin `|strval` |
 | SEC_SMARTY_NOFILTER | nota: evitar `nofilter` salvo HTML ya saneado |
 | STD_PHP_CS_FIXER | `--arreglar` lo aplica con la configuración del oficial |
+
+## Si el oficial da otra cosa
+
+El local tiene que dar LO MISMO que validator.prestashop.com. Si el usuario enseña un informe oficial distinto:
+
+1. Se lee el oficial (su JSON por pestaña: `https://validator.prestashop.com/module/<id>/validate/<paso>`, con
+   la sesión del usuario) y se compara mensaje a mensaje, fichero a fichero y línea a línea con el local.
+2. Cada diferencia es una regla mal medida: se corrige en `lib/VlComprobaciones.php` como goal
+   (`lib/VlGoals.php`, origen «verificado» con el número del informe) y se le pone su caso en
+   `pruebas/goals.php`, que tiene que dar `CAZADAS n de n` y `TODO EN VERDE`.
+3. Se vuelve a validar el módulo y se comprueba que da los mismos números que el oficial.
 
 ## Goals
 

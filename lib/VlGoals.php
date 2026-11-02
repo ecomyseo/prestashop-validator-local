@@ -110,6 +110,9 @@ class VlGoals
             'verificado');
         $d('STR_UNNEEDED', 'structure', 'error', 'Sin ficheros innecesarios en producción (.DS_Store, .git, Thumbs.db...)',
             'These files and folders are not needed on production and must be removed:', 'reglas');
+        // Medido (informe 3785388): config_es.xml en la raíz -> «File /config_es.xml should be removed» (error).
+        $d('STR_CONFIG_LANG', 'structure', 'error', 'Sin config_xx.xml en la raíz (los genera PrestaShop)',
+            'File %s should be removed', 'verificado');
 
         // ---------------------------------------------------------------- Errors
         $d('ERR_PHP_PARSE', 'errors', 'error', 'Todos los PHP se pueden analizar (sin errores de sintaxis)',
@@ -145,6 +148,7 @@ class VlGoals
         $d('ERR_PS_VERSION_CONDITION', 'errors', 'error', '_PS_VERSION_ se compara con version_compare()',
             '_PS_VERSION_ must be compared with version_compare().', 'documentado');
         // Medido (informe 3785354): cada línea con Context:: es un AVISO, en cualquier fichero PHP.
+        // Medido (informe 3785388): también si la línea está dentro de un comentario («/*  $x = Context::...»).
         $d('ERR_CONTEXT', 'errors', 'warning', 'Sin la clase Context (Context::getContext()) en PrestaShop 8/9',
             'Use of class Context', 'verificado');
         $d('ERR_CONFLICT_MARKS', 'errors', 'error', 'Sin marcas de conflicto de Git (<<< === >>>)',
@@ -172,8 +176,13 @@ class VlGoals
             'Empty files must be removed:', 'documentado', self::DOC . '#empty-and-generated-files-have-been-removed');
         // Medido (informe 3785354): ERROR por cada línea de una cadena del fichero principal con
         // <div, <p, <span o <h1..<h6 (no cuentan <strong>, <i>, <a>, <br>, <table>, <tr>, <td>, <button>...).
-        $d('OPT_HTML_IN_PHP', 'optimizations', 'error', 'Sin HTML (div, p, span, h1-h6) en el PHP principal: va en plantillas',
+        // Medido (informe 3785388): <script también cuenta.
+        $d('OPT_HTML_IN_PHP', 'optimizations', 'error', 'Sin HTML (div, p, span, h1-h6, script) en el PHP principal: va en plantillas',
             'The use of smarty templates is mandatory to display HTML. Your PHP code should not contain HTML.', 'verificado');
+        // Medido (informe 3785388): AVISO de PHP_CodeSniffer en la línea 1 de cada PHP con finales de línea
+        // mezclados (CRLF y LF); sale igual en Optimizations y en Licenses.
+        $d('OPT_MIXED_EOL', 'optimizations', 'warning', 'Cada PHP con un solo tipo de final de línea (sin mezclar CRLF y LF)',
+            'File has mixed line endings; this may cause incorrect results', 'verificado');
 
         // ---------------------------------------------------------------- Translations
         $d('TRA_QUOTES_PHP', 'translations', 'error', 'Cadenas de $this->l() entre comillas simples',
@@ -193,6 +202,12 @@ class VlGoals
         // Medido (informe 3785354): una línea en blanco entre <?php y el bloque de cabecera es ERROR.
         $d('LIC_FILE_DOC_SPACING', 'licenses', 'error', 'Sin líneas en blanco entre <?php y el bloque de cabecera',
             'There must be no blank lines before the file comment', 'verificado');
+        // Medido (informe 3785388): bloque de cabecera sin @author -> error en la línea del «*/» que lo
+        // cierra. Ni @copyright ni @license se exigen (ficheros sin ninguno de los tres solo dieron este).
+        $d('LIC_FILE_AUTHOR', 'licenses', 'error', 'El bloque de cabecera de cada PHP lleva @author',
+            'Missing @author tag in file comment', 'verificado');
+        $d('LIC_MIXED_EOL', 'licenses', 'warning', 'Cada PHP con un solo tipo de final de línea (sin mezclar CRLF y LF)',
+            'File has mixed line endings; this may cause incorrect results', 'verificado');
         $d('LIC_HEADER', 'licenses', 'error', 'Cabecera de licencia en cada JS y TPL',
             'Missing license header', 'verificado');
         $d('LIC_YEAR', 'licenses', 'warning', 'Año del copyright al día',

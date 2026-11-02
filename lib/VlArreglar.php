@@ -6,6 +6,8 @@
  *  2. .htaccess en la raíz con el ejemplo del checklist oficial, si no existe.
  *  3. if (!defined('_PS_VERSION_')) { exit; } en los PHP que no lo lleven (tras namespace/declare).
  *  4. PHP CS Fixer con la configuración del oficial (pestaña Standards).
+ *  5. Cabeceras de licencia que falten o lleven línea en blanco delante, y @author en el bloque de fichero.
+ *  6. config_xx.xml de la raíz fuera (los genera PrestaShop) y finales de línea mezclados a LF.
  *
  * No toca nada más: lo demás (SQL, Smarty, funciones prohibidas...) exige criterio.
  */
@@ -41,6 +43,25 @@ class VlArreglar
             file_put_contents($m->dir . '/.htaccess', self::HTACCESS);
             $cambios[] = 'creado /.htaccess';
         }
+        // config_xx.xml: caché de PrestaShop, el oficial pide quitarlo (Structure)
+        foreach ($m->ficheros as $f) {
+            if (preg_match('#^/config_[a-z]{2}\.xml$#i', $f) && @unlink($m->abs($f))) {
+                $cambios[] = 'borrado ' . $f;
+            }
+        }
+        // Finales de línea mezclados (Optimizations y Licenses): todo a LF, que es lo que pide PHP CS Fixer
+        foreach ($m->conExtension(array('php')) as $f) {
+            if ($m->esIgnorado(dirname($f))) {
+                continue;
+            }
+            $src = $m->leer($f);
+            if (VlComprobaciones::finesMezclados($src)) {
+                file_put_contents($m->abs($f), str_replace(array("\r\n", "\r"), "\n", $src));
+                $cambios[] = 'finales de línea a LF en ' . $f;
+            }
+        }
+        unset($m);
+        $m = new VlModulo($dir, $this->raiz);
         $guardia = '#if\s*\(\s*!\s*defined\s*\(\s*([\'"])_PS_VERSION_\1\s*\)\s*\)\s*(\{\s*)?(exit|die)\b#i';
         foreach ($m->phps() as $f) {
             if (strtolower(basename($f)) === 'index.php' || $m->esIgnorado($f)) {
@@ -57,7 +78,8 @@ class VlArreglar
             }
         }
         unset($m);
-        // PHP CS Fixer (configuración oficial)
+        $this->cabeceras($dir, $cambios);
+        // PHP CS Fixer (configuración oficial), lo ÚLTIMO: deja en su forma lo que se ha añadido antes
         $conf = rtrim(str_replace('\\', '/', sys_get_temp_dir()), '/') . '/vl_fix_' . md5($dir) . '.php';
         $reglas = $this->raiz . '/reglas/php-cs-fixer.reglas.php';
         file_put_contents($conf, "<?php\n" . '$c = new PhpCsFixer\\Config(\'PrestaShop coding standard\');' . "\n"
@@ -85,7 +107,12 @@ class VlArreglar
             $cambios[] = 'PHP CS Fixer NO se ha podido aplicar: ' . substr((string) $out, 0, 300);
         }
 
-        // Cabeceras (pestaña Licenses): bloque /** */ pegado a <?php en cada PHP, cabecera en JS y TPL
+        return $cambios;
+    }
+
+    /** Cabeceras (pestaña Licenses): bloque /** *\/ pegado a <?php en cada PHP con @author, cabecera en JS y TPL. */
+    private function cabeceras(string $dir, array &$cambios): void
+    {
         $m = new VlModulo($dir, $this->raiz);
         $autor = is_string($m->id['author'] ?? null) ? $m->id['author'] : 'Author';
         $regexLic = $m->reglas['Licenses']['Copyright regex'];
@@ -108,6 +135,12 @@ class VlArreglar
                 } elseif ($estado === 'falta' && preg_match('#^<\?php[ \t]*\R#', $src)) {
                     $nuevo = preg_replace('#^<\?php[ \t]*\R#', "<?php\n" . self::cabecera($autor, '/**', ' */') . "\n", $src, 1);
                 }
+                // @author en el bloque de fichero (Licenses: «Missing @author tag in file comment»)
+                $doc = VlComprobaciones::bloqueDeFichero((string) $nuevo);
+                if ($doc !== null && !preg_match('#@author\b#', $doc[0])) {
+                    $conAutor = preg_replace('#\s*\*/$#', "\n *\n * @author    " . $autor . "\n */", $doc[0], 1);
+                    $nuevo = substr_replace((string) $nuevo, $conAutor, strpos((string) $nuevo, $doc[0]), strlen($doc[0]));
+                }
             } elseif (!preg_match($regexLic . 'm', substr($src, 0, 4000))) {
                 $nuevo = $ext === 'tpl' ? self::cabecera($autor, '{**', ' *}') . "\n" . $src : self::cabecera($autor, '/**', ' */') . "\n" . $src;
             }
@@ -116,8 +149,6 @@ class VlArreglar
                 $cambios[] = 'cabecera de licencia en ' . $f;
             }
         }
-
-        return $cambios;
     }
 
     public static function cabecera(string $autor, string $abre, string $cierra): string

@@ -209,7 +209,7 @@ tabla con cómo se arregla cada uno.
 php skill/instalar.php            # Claude Code (~/.claude/skills) y Codex (~/.codex/skills, si existe)
 php skill/instalar.php --claude   # solo Claude Code
 php skill/instalar.php --codex    # solo Codex
-php skill/instalar.php --destino=DIR   # cualquier otra herramienta que lea SKILL.md
+php skill/instalar.php --destino=DIR   # cualquier otra carpeta de skills (se puede repetir)
 ```
 
 El instalador escribe las rutas reales de esta copia y del PHP; si ya había un `SKILL.md` distinto, guarda una
@@ -232,7 +232,7 @@ copia `.bak-<fecha>`.
 ## Goals
 
 Cada verificación es un goal con identificador (`SEC_SMARTY_ESCAPE`, `STR_PS_VERSION_GUARD`, `ERR_CONTEXT`…):
-64 en total, en [`lib/VlGoals.php`](lib/VlGoals.php), cada uno con su origen:
+68 en total, en [`lib/VlGoals.php`](lib/VlGoals.php), cada uno con su origen:
 
 - **verificado**: mensaje y comportamiento medidos contra un informe oficial real;
 - **herramienta**: misma herramienta, versión y configuración que el oficial;
@@ -250,9 +250,11 @@ Informes reales de validator.prestashop.com. El local da **exactamente** lo mism
 | refstandard (generador oficial, informe 3785333) | 0 | 2 | 0 | 7 | 0 | 0 | 0 | 1 | 378 |
 | módulo comercial A (informe 3785345) | 0 | 1 | 0 | 8 | 0 | 0 | 20 | 1 | 22 |
 | módulo comercial B (informe 3785354) | 0 | 0 | 14 | 2 notas | 35 | 0 | 26 | 0 | 0 |
+| módulo comercial C (informe 3785388) | 0 | 1 | 1 | 0 | 43 | 0 | 52 | 0 | 0 |
 
 El primero está en el repositorio (`oficial/informes/` y `oficial/generador/`) y la batería lo comprueba en cada
-pasada; los otros dos son módulos privados y se comprobaron en local.
+pasada; los demás son módulos privados y se comprobaron en local. Lo que enseñó cada informe está además en
+`pruebas/goals.php` como caso del goal correspondiente.
 
 Lo que se descubrió así:
 
@@ -264,9 +266,14 @@ Lo que se descubrió así:
   los CSS no se miran.
 - La línea en blanco tras `<?php` de `blank_line_after_opening_tag` **no cuenta** en Standards (solo añade
   líneas y el oficial cuenta las que se quitan). No hay que ponerla: rompe Licenses.
-- Cada línea con `Context::` es un aviso en Errors («Use of class Context»).
-- HTML en el PHP principal: un error en Optimizations por cada línea de cadena con `<div`, `<p`, `<span` o
-  `<h1`…`<h6`. `<strong>`, `<a>`, `<table>`… no cuentan, y los demás PHP no se miran.
+- Cada línea con `Context::` es un aviso en Errors («Use of class Context»), **también si está comentada**.
+- HTML en el PHP principal: un error en Optimizations por cada línea de cadena con `<div`, `<p`, `<span`,
+  `<h1`…`<h6` o `<script`. `<strong>`, `<a>`, `<table>`… no cuentan, y los demás PHP no se miran.
+- Un PHP con finales de línea mezclados (CRLF y LF) da el aviso de PHP_CodeSniffer «File has mixed line
+  endings» en la línea 1, en Optimizations **y** en Licenses.
+- El bloque de cabecera de cada PHP tiene que llevar `@author` («Missing @author tag in file comment», error en
+  la línea de su `*/`); `@copyright` y `@license` no se exigen.
+- Un `config_xx.xml` en la raíz (`config_es.xml`) es error en Structure: «File /config_es.xml should be removed».
 - Escribir en `$_GET['x'] = …` no cuenta; leerlo, sí. `'home_default'` solo se marca en módulos para < 1.7.
 - El oficial **no** comprueba `logo.png`.
 
@@ -276,9 +283,12 @@ hasta que la batería vuelva a verde.
 ## Arreglos automáticos (`--arreglar`)
 
 Solo lo seguro: `index.php` en cada carpeta, `.htaccess` en la raíz, la guarda
-`if (!defined('_PS_VERSION_')) { exit; }`, PHP CS Fixer con la configuración del oficial y las cabeceras de
-licencia que falten o que tengan una línea en blanco delante. Smarty sin escapar, funciones prohibidas, errores
-de PHPStan, SQL, HTML en el PHP principal o `Context::` se corrigen a mano (el skill tiene la tabla).
+`if (!defined('_PS_VERSION_')) { exit; }` (en los cron y ajax que cargan `config.inc.php`, **después** de esa
+carga), las cabeceras de licencia que falten o que tengan una línea en blanco delante, `@author` en el bloque de
+cabecera, fuera los `config_xx.xml`, finales de línea mezclados a LF y, lo último, PHP CS Fixer con la
+configuración del oficial. Smarty sin escapar, funciones prohibidas, errores de PHPStan, SQL, HTML en el PHP
+principal o `Context::` se corrigen a mano (el skill tiene la tabla). La batería comprueba que una copia con
+esos fallos queda al 100 % tras `--arreglar`.
 
 ## Pruebas
 
