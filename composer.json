@@ -1,0 +1,25 @@
+{
+    "name": "ecomexperts/validator-local",
+    "description": "Validador local de módulos PrestaShop que replica validator.prestashop.com (5.14.6)",
+    "type": "project",
+    "license": "AFL-3.0",
+    "require": {
+        "php": ">=8.1",
+        "friendsofphp/php-cs-fixer": "3.95.4",
+        "phpstan/phpstan": "1.12.33",
+        "nikic/php-parser": "^4.19",
+        "smarty/smarty": "^4.5",
+        "prestashop/autoindex": "2.1.0",
+        "prestashop/header-stamp": "2.6"
+    },
+    "autoload": {
+        "classmap": ["lib/"]
+    },
+    "config": {
+        "platform": {
+            "php": "8.2.35"
+        },
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
+}

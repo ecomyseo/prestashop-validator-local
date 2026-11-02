@@ -1,0 +1,63 @@
+{
+    "_comentario": "Versiones de PrestaShop contra las que corre PHPStan (pestaña Compatibility). Ruta = raíz con vendor/ y config/. El oficial no corre 1.7.6 (medido: daría 2 resultados que el oficial no da).",
+    "versiones": {
+        "1.7.8.11": "C:/dev-tools/prestashop/1.7.8.11/extracted",
+        "8.1.7": "C:/dev-tools/prestashop/8.1.7/extracted",
+        "8.2.7": "C:/dev-tools/prestashop/8.2.7/extracted",
+        "9.1.5": "C:/dev-tools/prestashop/9.1.5/extracted",
+        "9.2.0": "C:/dev-tools/prestashop/9.2.0/extracted"
+    },
+    "php": "C:/dev-tools/php/php-8.2/php.exe",
+    "puerto_web": 8077,
+    "carpeta_modulos": "Z:/modulos ps mios finalizados y ok/modulos IA",
+    "tras_100": {
+        "_comentario": "Pasos que se pueden elegir ANTES de validar y que se hacen si el módulo pasa al 100 % (solo con carpetas dentro de carpeta_modulos). Un paso cuyo programa no existe se omite. Marcadores: {python} {php} {modulo} {carpeta_modulos} {capturas} {displayName} {version} {manual_md} {manual_pdf}.",
+        "activo": true,
+        "python": "C:/Users/Usuario/AppData/Local/Programs/Python/Python312/python.exe",
+        "capturas": "{carpeta_modulos}/capturas/{modulo}/8.2b",
+        "pasos": [
+            {
+                "id": "instalar",
+                "titulo": "Instalar en el PrestaShop local (8.2)",
+                "orden": ["{python}", "C:/dev-tools/testshop/instalar_en_locales.py", "{modulo}", "8.2b"],
+                "exige": "FALLAN: 0",
+                "minutos": 20
+            },
+            {
+                "id": "capturas",
+                "titulo": "Capturas de pantalla",
+                "requiere": ["instalar"],
+                "orden": ["{python}", "C:/dev-tools/testshop/capturas_modulo.py", "{modulo}", "8.2b"],
+                "produce": "carpeta:{capturas}",
+                "minutos": 30
+            },
+            {
+                "id": "manual",
+                "titulo": "Manual PDF con todas las capturas",
+                "preparar": "manual",
+                "orden": ["{python}", "C:/dev-tools/manuales/md_a_pdf.py", "{manual_md}", "-o", "{manual_pdf}", "--titulo", "{displayName}", "--subtitulo", "Manual de usuario · v{version}"],
+                "produce": "fichero:{manual_pdf}",
+                "minutos": 10
+            },
+            {
+                "id": "video",
+                "titulo": "Manual en vídeo",
+                "orden": ["{python}", "C:/dev-tools/fabrica/video_modulo.py", "{modulo}"],
+                "produce": "fichero:{carpeta_modulos}/videos/{modulo}/{modulo}.mp4",
+                "minutos": 60
+            },
+            {
+                "id": "parar",
+                "titulo": "Parar las tiendas que se hayan arrancado",
+                "siempre": true,
+                "si": ["instalar", "capturas"],
+                "interno": "parar_puertos",
+                "puertos": [8082, 8083, 8091, 8092, 8093, 8033, 8017, 8094],
+                "mariadb": {
+                    "puerto": 3399,
+                    "apagar": ["C:/dev-tools/testshop/mariadb-10.11.11-winx64/bin/mysqladmin.exe", "-h", "127.0.0.1", "-P", "3399", "-u", "root", "shutdown"]
+                }
+            }
+        ]
+    }
+}

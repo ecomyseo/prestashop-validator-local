@@ -1,0 +1,19 @@
+# Dependencias: se instalan con «composer install»
+/vendor/
+node_modules/
+
+# Salidas de cada validación (llevan el código de los módulos validados)
+/informes/
+/trabajos/
+
+# Informes y ZIP de módulos privados usados para calibrar en local
+/oficial/ecomproductrescue-*.zip
+/oficial/informes/ecomproductrescue-*.json
+
+# Copia local del changelog del oficial (ver el enlace en el README)
+/oficial/changelog-*.txt
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.log

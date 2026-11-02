@@ -1,0 +1,35 @@
+{
+    "_fuente": "Informe REAL de validator.prestashop.com 5.14.6, validación 3785333 del 2026-11-02, sobre oficial/generador/refstandard.zip (módulo del generador oficial, compatibilidad 1.7 -> 9.0). Totales = errores + avisos de cada pestaña; ficheros y líneas copiados del informe.",
+    "zip": "oficial/generador/refstandard.zip",
+    "pestanas": {
+        "requirements": {"total": 0},
+        "structure": {
+            "total": 2,
+            "ficheros": {
+                "To ensure that PHP files are executed in the PrestaShop context, you must add the following code to the beginning of all PHP files: <code>if (!defined('_PS_VERSION_')) { exit; }</code>": ["/sql/uninstall.php", "/sql/install.php"]
+            }
+        },
+        "errors": {"total": 0},
+        "compatibility": {
+            "total": 7,
+            "codigo": [
+                ["/refstandard.php", 71, "Right side of && is always true."],
+                ["/refstandard.php", 191, "Parameter #2 $idLang of static method ConfigurationCore::get() expects int|null, true given."],
+                ["/refstandard.php", 192, "Parameter #2 $idLang of static method ConfigurationCore::get() expects int|null, string given."],
+                ["/refstandard.php", 229, "Cannot redeclare method Refstandard::hookHeader()."],
+                ["/refstandard.php", 234, "Cannot redeclare method Refstandard::hookDisplayBackOfficeHeader()."],
+                ["/sql/uninstall.php", 34, "Empty array passed to foreach."]
+            ]
+        },
+        "optimizations": {"total": 0},
+        "translations": {"total": 0},
+        "licenses": {"total": 0},
+        "security": {
+            "total": 1,
+            "ficheros": {
+                "To prevent someone from listing the files of the module, an .htaccess file must be present in the root folder.": ["/.htaccess"]
+            }
+        },
+        "standards": {"total": 378}
+    }
+}

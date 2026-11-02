@@ -1,0 +1,1994 @@
+{
+    "generado": "2026-11-02",
+    "fuente": "C:/dev-tools/prestashop/<version>/extracted/classes (@deprecated en docblocks)",
+    "versiones": [
+        "1.7.8.11",
+        "8.1.7",
+        "8.2.7",
+        "9.1.5",
+        "9.2.0"
+    ],
+    "marcas": {
+        "abstractform::checkfieldlength": {
+            "tipo": "metodo",
+            "nombre": "AbstractForm::checkFieldLength()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "addressformat::_getformatdb": {
+            "tipo": "metodo",
+            "nombre": "AddressFormat::_getFormatDB()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "admincontroller::addpageheadertoolbarmoduleslistbutton": {
+            "tipo": "metodo",
+            "nombre": "AdminController::addPageHeaderToolBarModulesListButton()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "admincontroller::addtoolbarmoduleslistbutton": {
+            "tipo": "metodo",
+            "nombre": "AdminController::addToolBarModulesListButton()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "admincontroller::filtertabmodulelist": {
+            "tipo": "metodo",
+            "nombre": "AdminController::filterTabModuleList()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "admincontroller::inittabmodulelist": {
+            "tipo": "metodo",
+            "nombre": "AdminController::initTabModuleList()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "admincontroller::isfresh": {
+            "tipo": "metodo",
+            "nombre": "AdminController::isFresh()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "admincontroller::l": {
+            "tipo": "metodo",
+            "nombre": "AdminController::l()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "admincontroller::refresh": {
+            "tipo": "metodo",
+            "nombre": "AdminController::refresh()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "admincontroller::rendermoduleslist": {
+            "tipo": "metodo",
+            "nombre": "AdminController::renderModulesList()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "admincontroller::setdeprecatedmedia": {
+            "tipo": "metodo",
+            "nombre": "AdminController::setDeprecatedMedia()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "attributegroup::gethigherposition": {
+            "tipo": "metodo",
+            "nombre": "AttributeGroup::getHigherPosition()",
+            "static": true,
+            "en": [
+                "9.2.0"
+            ],
+            "desde": "9.2.0"
+        },
+        "carrier::gethigherposition": {
+            "tipo": "metodo",
+            "nombre": "Carrier::getHigherPosition()",
+            "static": true,
+            "en": [
+                "9.2.0"
+            ],
+            "desde": "9.2.0"
+        },
+        "cart::addextracarriers": {
+            "tipo": "metodo",
+            "nombre": "Cart::addExtraCarriers()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "cart::autosetproductaddress": {
+            "tipo": "metodo",
+            "nombre": "Cart::autosetProductAddress()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::checkdiscountvalidity": {
+            "tipo": "metodo",
+            "nombre": "Cart::checkDiscountValidity()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "cart::containsproduct": {
+            "tipo": "metodo",
+            "nombre": "Cart::containsProduct()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "cart::deletepicturetoproduct": {
+            "tipo": "metodo",
+            "nombre": "Cart::deletePictureToProduct()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "cart::desintifier": {
+            "tipo": "metodo",
+            "nombre": "Cart::desintifier()",
+            "static": true,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::duplicateproduct": {
+            "tipo": "metodo",
+            "nombre": "Cart::duplicateProduct()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::excludegiftsdiscountfromtotal": {
+            "tipo": "metodo",
+            "nombre": "Cart::excludeGiftsDiscountFromTotal()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::findtaxrulesgroupid": {
+            "tipo": "metodo",
+            "nombre": "Cart::findTaxRulesGroupId()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::getaddresscollection": {
+            "tipo": "metodo",
+            "nombre": "Cart::getAddressCollection()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::getdeliveryaddressid": {
+            "tipo": "metodo",
+            "nombre": "Cart::getDeliveryAddressId()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::getdiscountsubtotalwithoutgifts": {
+            "tipo": "metodo",
+            "nombre": "Cart::getDiscountSubtotalWithoutGifts()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::getordershippingcost": {
+            "tipo": "metodo",
+            "nombre": "Cart::getOrderShippingCost()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "cart::getordertotal": {
+            "tipo": "metodo",
+            "nombre": "Cart::getOrderTotal()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "cart::getordertotalusingtaxcalculationmethod": {
+            "tipo": "metodo",
+            "nombre": "Cart::getOrderTotalUsingTaxCalculationMethod()",
+            "static": true,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::getpackageidwarehouse": {
+            "tipo": "metodo",
+            "nombre": "Cart::getPackageIdWarehouse()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::getrawsummarydetails": {
+            "tipo": "metodo",
+            "nombre": "Cart::getRawSummaryDetails()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::getsummarydetails": {
+            "tipo": "metodo",
+            "nombre": "Cart::getSummaryDetails()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::gettaxesaverageused": {
+            "tipo": "metodo",
+            "nombre": "Cart::getTaxesAverageUsed()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "cart::includegiftsdiscountintotal": {
+            "tipo": "metodo",
+            "nombre": "Cart::includeGiftsDiscountInTotal()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::intifier": {
+            "tipo": "metodo",
+            "nombre": "Cart::intifier()",
+            "static": true,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::ismultiaddressdelivery": {
+            "tipo": "metodo",
+            "nombre": "Cart::isMultiAddressDelivery()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::mergegiftsproductsquantity": {
+            "tipo": "metodo",
+            "nombre": "Cart::mergeGiftsProductsQuantity()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::setnomultishipping": {
+            "tipo": "metodo",
+            "nombre": "Cart::setNoMultishipping()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::setproductaddressdelivery": {
+            "tipo": "metodo",
+            "nombre": "Cart::setProductAddressDelivery()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::simulatecarrierselectedoutput": {
+            "tipo": "metodo",
+            "nombre": "Cart::simulateCarrierSelectedOutput()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cart::simulatecarriersoutput": {
+            "tipo": "metodo",
+            "nombre": "Cart::simulateCarriersOutput()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "cart::splitgiftsproductsquantity": {
+            "tipo": "metodo",
+            "nombre": "Cart::splitGiftsProductsQuantity()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "cartrule::checkproductrestrictions": {
+            "tipo": "metodo",
+            "nombre": "CartRule::checkProductRestrictions()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "category::_subtree": {
+            "tipo": "metodo",
+            "nombre": "Category::_subTree()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "category::getcategoryinformations": {
+            "tipo": "metodo",
+            "nombre": "Category::getCategoryInformations()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "category::getshopid": {
+            "tipo": "metodo",
+            "nombre": "Category::getShopID()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "category::geturlrewriteinformations": {
+            "tipo": "metodo",
+            "nombre": "Category::getUrlRewriteInformations()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "category::subtree": {
+            "tipo": "metodo",
+            "nombre": "Category::subTree()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7",
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "cmscategory::searchbynameandparentcmscategoryid": {
+            "tipo": "metodo",
+            "nombre": "CMSCategory::searchByNameAndParentCMSCategoryId()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "configuration::clearconfigurationcachefortesting": {
+            "tipo": "metodo",
+            "nombre": "Configuration::clearConfigurationCacheForTesting()",
+            "static": true,
+            "en": [
+                "8.1.7",
+                "8.2.7",
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "8.0.0"
+        },
+        "configuration::getint": {
+            "tipo": "metodo",
+            "nombre": "Configuration::getInt()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "context::checkmobilecontext": {
+            "tipo": "metodo",
+            "nombre": "Context::checkMobileContext()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "context::getmobiledevice": {
+            "tipo": "metodo",
+            "nombre": "Context::getMobileDevice()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "controller::addjquery": {
+            "tipo": "metodo",
+            "nombre": "Controller::addJquery()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "controller::ajaxdie": {
+            "tipo": "metodo",
+            "nombre": "Controller::ajaxDie()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "cookie::_setcookie": {
+            "tipo": "metodo",
+            "nombre": "Cookie::_setcookie()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "cookie::islogged": {
+            "tipo": "metodo",
+            "nombre": "Cookie::isLogged()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "cookie::isloggedback": {
+            "tipo": "metodo",
+            "nombre": "Cookie::isLoggedBack()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "currency::getconversationrate": {
+            "tipo": "metodo",
+            "nombre": "Currency::getConversationRate()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "customer::validatecontroller": {
+            "tipo": "metodo",
+            "nombre": "Customer::validateController()",
+            "static": false,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "dbpdo::_getpdo": {
+            "tipo": "metodo",
+            "nombre": "DbPDO::_getPDO()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "feature::gethigherposition": {
+            "tipo": "metodo",
+            "nombre": "Feature::getHigherPosition()",
+            "static": true,
+            "en": [
+                "9.2.0"
+            ],
+            "desde": "9.2.0"
+        },
+        "fileuploader": {
+            "tipo": "clase",
+            "nombre": "FileUploader",
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "frontcontroller::addcolorstoproductlist": {
+            "tipo": "metodo",
+            "nombre": "FrontController::addColorsToProductList()",
+            "static": false,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "frontcontroller::addcss": {
+            "tipo": "metodo",
+            "nombre": "FrontController::addCSS()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7",
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "frontcontroller::addjs": {
+            "tipo": "metodo",
+            "nombre": "FrontController::addJS()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7",
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "frontcontroller::addmedia": {
+            "tipo": "metodo",
+            "nombre": "FrontController::addMedia()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "frontcontroller::getcolorslistcacheid": {
+            "tipo": "metodo",
+            "nombre": "FrontController::getColorsListCacheId()",
+            "static": false,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "frontcontroller::removecss": {
+            "tipo": "metodo",
+            "nombre": "FrontController::removeCSS()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7",
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "frontcontroller::removejs": {
+            "tipo": "metodo",
+            "nombre": "FrontController::removeJS()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7",
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "frontcontroller::removemedia": {
+            "tipo": "metodo",
+            "nombre": "FrontController::removeMedia()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "frontcontroller::updatequerystring": {
+            "tipo": "metodo",
+            "nombre": "FrontController::updateQueryString()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "groupreduction::getgroupbycategoryid": {
+            "tipo": "metodo",
+            "nombre": "GroupReduction::getGroupByCategoryId()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "groupreduction::getgroupreductionbycategoryid": {
+            "tipo": "metodo",
+            "nombre": "GroupReduction::getGroupReductionByCategoryId()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "helper::l": {
+            "tipo": "metodo",
+            "nombre": "Helper::l()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "helper::renderadmincategorietree": {
+            "tipo": "metodo",
+            "nombre": "Helper::renderAdminCategorieTree()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "helper::rendershoplist": {
+            "tipo": "metodo",
+            "nombre": "Helper::renderShopList()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "hook::gethookaliaslist": {
+            "tipo": "metodo",
+            "nombre": "Hook::getHookAliasList()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "hook::getretrohookname": {
+            "tipo": "metodo",
+            "nombre": "Hook::getRetroHookName()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "htmltemplatesupplyorderform": {
+            "tipo": "clase",
+            "nombre": "HTMLTemplateSupplyOrderForm",
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "imagetype::getformatedname": {
+            "tipo": "metodo",
+            "nombre": "ImageType::getFormatedName()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "language::_copynoneflag": {
+            "tipo": "metodo",
+            "nombre": "Language::_copyNoneFlag()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "language::installemailslanguagepack": {
+            "tipo": "metodo",
+            "nombre": "Language::installEmailsLanguagePack()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "language::recursedeletedir": {
+            "tipo": "metodo",
+            "nombre": "Language::recurseDeleteDir()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "media::getjquerypath": {
+            "tipo": "metodo",
+            "nombre": "Media::getJqueryPath()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "module::disablebyname": {
+            "tipo": "metodo",
+            "nombre": "Module::disableByName()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7",
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "module::disabledevice": {
+            "tipo": "metodo",
+            "nombre": "Module::disableDevice()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "module::displayflags": {
+            "tipo": "metodo",
+            "nombre": "Module::displayFlags()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "module::enablebyname": {
+            "tipo": "metodo",
+            "nombre": "Module::enableByName()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7",
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "module::enabledevice": {
+            "tipo": "metodo",
+            "nombre": "Module::enableDevice()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "module::isenabled": {
+            "tipo": "metodo",
+            "nombre": "Module::isEnabled()",
+            "static": true,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "module::isinstalled": {
+            "tipo": "metodo",
+            "nombre": "Module::isInstalled()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7",
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "moduleadmincontroller::l": {
+            "tipo": "metodo",
+            "nombre": "ModuleAdminController::l()",
+            "static": false,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "modulefrontcontroller::l": {
+            "tipo": "metodo",
+            "nombre": "ModuleFrontController::l()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7",
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "objectmodel::gettranslationsfields": {
+            "tipo": "metodo",
+            "nombre": "ObjectModel::getTranslationsFields()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "objectmodel::maketranslationfields": {
+            "tipo": "metodo",
+            "nombre": "ObjectModel::makeTranslationFields()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "order::adddiscount": {
+            "tipo": "metodo",
+            "nombre": "Order::addDiscount()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "order::getdiscounts": {
+            "tipo": "metodo",
+            "nombre": "Order::getDiscounts()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "order::getinvoice": {
+            "tipo": "metodo",
+            "nombre": "Order::getInvoice()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "order::getorderbycartid": {
+            "tipo": "metodo",
+            "nombre": "Order::getOrderByCartId()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "order::getorderidsbystatus": {
+            "tipo": "metodo",
+            "nombre": "Order::getOrderIdsByStatus()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "order::getordersidinvoicebydate": {
+            "tipo": "metodo",
+            "nombre": "Order::getOrdersIdInvoiceByDate()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "order::getwarehouselist": {
+            "tipo": "metodo",
+            "nombre": "Order::getWarehouseList()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "order::getwscurrentstate": {
+            "tipo": "metodo",
+            "nombre": "Order::getWsCurrentState()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "order::setproductprices": {
+            "tipo": "metodo",
+            "nombre": "Order::setProductPrices()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7",
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "orderdetail::savetaxcalculator": {
+            "tipo": "metodo",
+            "nombre": "OrderDetail::saveTaxCalculator()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7",
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "orderdiscount": {
+            "tipo": "clase",
+            "nombre": "OrderDiscount",
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "orderhistory::getlastorderstate": {
+            "tipo": "metodo",
+            "nombre": "OrderHistory::getLastOrderState()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "orderpayment::getbyorderid": {
+            "tipo": "metodo",
+            "nombre": "OrderPayment::getByOrderId()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "orderslip::createorderslip": {
+            "tipo": "metodo",
+            "nombre": "OrderSlip::createOrderSlip()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "orderslip::getproductslipresume": {
+            "tipo": "metodo",
+            "nombre": "OrderSlip::getProductSlipResume()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7",
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "pack::allusesadvancedstockmanagement": {
+            "tipo": "metodo",
+            "nombre": "Pack::allUsesAdvancedStockManagement()",
+            "static": true,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "pack::usesadvancedstockmanagement": {
+            "tipo": "metodo",
+            "nombre": "Pack::usesAdvancedStockManagement()",
+            "static": true,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "paymentmodule::formatproductandvoucherforemail": {
+            "tipo": "metodo",
+            "nombre": "PaymentModule::formatProductAndVoucherForEmail()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "prestashopbackup::getbackupurl": {
+            "tipo": "metodo",
+            "nombre": "PrestaShopBackup::getBackupURL()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7",
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "prestashopexception::getexentedmessage": {
+            "tipo": "metodo",
+            "nombre": "PrestaShopException::getExentedMessage()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "prestashoplogger::_ispresent": {
+            "tipo": "metodo",
+            "nombre": "PrestaShopLogger::_isPresent()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "product::addattributecombinaison": {
+            "tipo": "metodo",
+            "nombre": "Product::addAttributeCombinaison()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "product::addattributecombinationmultiple": {
+            "tipo": "metodo",
+            "nombre": "Product::addAttributeCombinationMultiple()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "product::addcustomizationprice": {
+            "tipo": "metodo",
+            "nombre": "Product::addCustomizationPrice()",
+            "static": true,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "product::addproductattribute": {
+            "tipo": "metodo",
+            "nombre": "Product::addProductAttribute()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "product::addproductattributemultiple": {
+            "tipo": "metodo",
+            "nombre": "Product::addProductAttributeMultiple()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "product::addproductcustomizationprice": {
+            "tipo": "metodo",
+            "nombre": "Product::addProductCustomizationPrice()",
+            "static": true,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "product::addstockmvt": {
+            "tipo": "metodo",
+            "nombre": "Product::addStockMvt()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "product::deleteattributecombinaison": {
+            "tipo": "metodo",
+            "nombre": "Product::deleteAttributeCombinaison()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "product::getattributecombinaisons": {
+            "tipo": "metodo",
+            "nombre": "Product::getAttributeCombinaisons()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "product::getcolorslistcacheid": {
+            "tipo": "metodo",
+            "nombre": "Product::getColorsListCacheId()",
+            "static": true,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "product::getidproductattributesbyidattributes": {
+            "tipo": "metodo",
+            "nombre": "Product::getIdProductAttributesByIdAttributes()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "product::getrealquantity": {
+            "tipo": "metodo",
+            "nombre": "Product::getRealQuantity()",
+            "static": true,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "product::getstockmvts": {
+            "tipo": "metodo",
+            "nombre": "Product::getStockMvts()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "product::reinjectquantities": {
+            "tipo": "metodo",
+            "nombre": "Product::reinjectQuantities()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "product::updateproductattribute": {
+            "tipo": "metodo",
+            "nombre": "Product::updateProductAttribute()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "product::updatequantity": {
+            "tipo": "metodo",
+            "nombre": "Product::updateQuantity()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "product::updatequantityproductwithattributequantity": {
+            "tipo": "metodo",
+            "nombre": "Product::updateQuantityProductWithAttributeQuantity()",
+            "static": false,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "product::usesadvancedstockmanagement": {
+            "tipo": "metodo",
+            "nombre": "Product::usesAdvancedStockManagement()",
+            "static": true,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "productattribute::gethigherposition": {
+            "tipo": "metodo",
+            "nombre": "ProductAttribute::getHigherPosition()",
+            "static": true,
+            "en": [
+                "9.2.0"
+            ],
+            "desde": "9.2.0"
+        },
+        "qquploadedfileform": {
+            "tipo": "clase",
+            "nombre": "QqUploadedFileForm",
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "qquploadedfilexhr": {
+            "tipo": "clase",
+            "nombre": "QqUploadedFileXhr",
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "specificprice::setpriorities": {
+            "tipo": "metodo",
+            "nombre": "SpecificPrice::setPriorities()",
+            "static": true,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "stock": {
+            "tipo": "clase",
+            "nombre": "Stock",
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "stockavailable::synchronize": {
+            "tipo": "metodo",
+            "nombre": "StockAvailable::synchronize()",
+            "static": true,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "stockmanager": {
+            "tipo": "clase",
+            "nombre": "StockManager",
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "stockmanagerfactory": {
+            "tipo": "clase",
+            "nombre": "StockManagerFactory",
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "stockmanagermodule": {
+            "tipo": "clase",
+            "nombre": "StockManagerModule",
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "stockmvt": {
+            "tipo": "clase",
+            "nombre": "StockMvt",
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "stockmvt::addmissingmvt": {
+            "tipo": "metodo",
+            "nombre": "StockMvt::addMissingMvt()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "stockmvtreason": {
+            "tipo": "clase",
+            "nombre": "StockMvtReason",
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "stockmvtws": {
+            "tipo": "clase",
+            "nombre": "StockMvtWS",
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "supplyorder": {
+            "tipo": "clase",
+            "nombre": "SupplyOrder",
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "supplyorderdetail": {
+            "tipo": "clase",
+            "nombre": "SupplyOrderDetail",
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "supplyorderhistory": {
+            "tipo": "clase",
+            "nombre": "SupplyOrderHistory",
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "supplyorderreceipthistory": {
+            "tipo": "clase",
+            "nombre": "SupplyOrderReceiptHistory",
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "supplyorderstate": {
+            "tipo": "clase",
+            "nombre": "SupplyOrderState",
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "tab::getclassname": {
+            "tipo": "metodo",
+            "nombre": "Tab::getClassName()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "tab::getidfromclassname": {
+            "tipo": "metodo",
+            "nombre": "Tab::getIdFromClassName()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7",
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "tax::excludetaxeoption": {
+            "tipo": "metodo",
+            "nombre": "Tax::excludeTaxeOption()",
+            "static": true,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "tax::getproducttaxrateviarules": {
+            "tipo": "metodo",
+            "nombre": "Tax::getProductTaxRateViaRules()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "taxrule::deletetaxrulebyidcounty": {
+            "tipo": "metodo",
+            "nombre": "TaxRule::deleteTaxRuleByIdCounty()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "taxrulesgroup::gettaxes": {
+            "tipo": "metodo",
+            "nombre": "TaxRulesGroup::getTaxes()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "taxrulesgroup::gettaxesrate": {
+            "tipo": "metodo",
+            "nombre": "TaxRulesGroup::getTaxesRate()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "tools::array_replace": {
+            "tipo": "metodo",
+            "nombre": "Tools::array_replace()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "tools::arrayreplacerecursive": {
+            "tipo": "metodo",
+            "nombre": "Tools::arrayReplaceRecursive()",
+            "static": true,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "tools::cleannonunicodesupport": {
+            "tipo": "metodo",
+            "nombre": "Tools::cleanNonUnicodeSupport()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "tools::clearcolorlistcache": {
+            "tipo": "metodo",
+            "nombre": "Tools::clearColorListCache()",
+            "static": true,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "tools::convertprice": {
+            "tipo": "metodo",
+            "nombre": "Tools::convertPrice()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "tools::display404error": {
+            "tipo": "metodo",
+            "nombre": "Tools::display404Error()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "tools::displayerror": {
+            "tipo": "metodo",
+            "nombre": "Tools::displayError()",
+            "static": true,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "tools::displaynumber": {
+            "tipo": "metodo",
+            "nombre": "Tools::displayNumber()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "tools::displayprice": {
+            "tipo": "metodo",
+            "nombre": "Tools::displayPrice()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "tools::encrypt": {
+            "tipo": "metodo",
+            "nombre": "Tools::encrypt()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "tools::encryptiv": {
+            "tipo": "metodo",
+            "nombre": "Tools::encryptIV()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "tools::error_log": {
+            "tipo": "metodo",
+            "nombre": "Tools::error_log()",
+            "static": true,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "tools::getbrightness": {
+            "tipo": "metodo",
+            "nombre": "Tools::getBrightness()",
+            "static": true,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "tools::getbytes": {
+            "tipo": "metodo",
+            "nombre": "Tools::getBytes()",
+            "static": true,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "tools::getcldr": {
+            "tipo": "metodo",
+            "nombre": "Tools::getCldr()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "tools::getdescriptionclean": {
+            "tipo": "metodo",
+            "nombre": "Tools::getDescriptionClean()",
+            "static": true,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "tools::getsafemodestatus": {
+            "tipo": "metodo",
+            "nombre": "Tools::getSafeModeStatus()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "tools::isbright": {
+            "tipo": "metodo",
+            "nombre": "Tools::isBright()",
+            "static": true,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "tools::jsondecode": {
+            "tipo": "metodo",
+            "nombre": "Tools::jsonDecode()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "tools::jsonencode": {
+            "tipo": "metodo",
+            "nombre": "Tools::jsonEncode()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "tools::link_rewrite": {
+            "tipo": "metodo",
+            "nombre": "Tools::link_rewrite()",
+            "static": true,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "tools::math_round": {
+            "tipo": "metodo",
+            "nombre": "Tools::math_round()",
+            "static": true,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "tools::redirectlink": {
+            "tipo": "metodo",
+            "nombre": "Tools::redirectLink()",
+            "static": true,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "tools::safepostvars": {
+            "tipo": "metodo",
+            "nombre": "Tools::safePostVars()",
+            "static": true,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "tools::stripslashes": {
+            "tipo": "metodo",
+            "nombre": "Tools::stripslashes()",
+            "static": true,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "translate::getadmintranslation": {
+            "tipo": "metodo",
+            "nombre": "Translate::getAdminTranslation()",
+            "static": true,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "translate::pptags": {
+            "tipo": "metodo",
+            "nombre": "Translate::ppTags()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "translate::smartypostprocesstranslation": {
+            "tipo": "metodo",
+            "nombre": "Translate::smartyPostProcessTranslation()",
+            "static": true,
+            "en": [
+                "1.7.8.11",
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "tree::useinput": {
+            "tipo": "metodo",
+            "nombre": "Tree::useInput()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "upgrader": {
+            "tipo": "clase",
+            "nombre": "Upgrader",
+            "en": [
+                "9.2.0"
+            ],
+            "desde": "9.2.0"
+        },
+        "uploader::_getfilesize": {
+            "tipo": "metodo",
+            "nombre": "Uploader::_getFileSize()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "uploader::_getservervars": {
+            "tipo": "metodo",
+            "nombre": "Uploader::_getServerVars()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "uploader::_normalizedirectory": {
+            "tipo": "metodo",
+            "nombre": "Uploader::_normalizeDirectory()",
+            "static": false,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "validate::isanything": {
+            "tipo": "metodo",
+            "nombre": "Validate::isAnything()",
+            "static": true,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "validate::ispasswd": {
+            "tipo": "metodo",
+            "nombre": "Validate::isPasswd()",
+            "static": true,
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        },
+        "validate::ispasswdadmin": {
+            "tipo": "metodo",
+            "nombre": "Validate::isPasswdAdmin()",
+            "static": true,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "validate::isplaintextpassword": {
+            "tipo": "metodo",
+            "nombre": "Validate::isPlaintextPassword()",
+            "static": true,
+            "en": [
+                "8.1.7",
+                "8.2.7"
+            ],
+            "desde": "8.0.0"
+        },
+        "warehouse": {
+            "tipo": "clase",
+            "nombre": "Warehouse",
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "warehouse::resetstockavailable": {
+            "tipo": "metodo",
+            "nombre": "Warehouse::resetStockAvailable()",
+            "static": false,
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "warehouseproductlocation": {
+            "tipo": "clase",
+            "nombre": "WarehouseProductLocation",
+            "en": [
+                "9.1.5",
+                "9.2.0"
+            ],
+            "desde": "9.0.0"
+        },
+        "windows": {
+            "tipo": "clase",
+            "nombre": "Windows",
+            "en": [
+                "1.7.8.11"
+            ],
+            "desde": "1.7.8.11"
+        }
+    }
+}
