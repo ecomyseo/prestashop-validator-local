@@ -1,0 +1,11 @@
+# Finales de línea LF en todas partes, también en Windows con core.autocrlf=true:
+# el módulo base de las pruebas y los módulos de referencia tienen que salir byte a byte como
+# están (con CRLF, PHP CS Fixer marcaría cada línea y la batería saldría en rojo).
+* text=auto eol=lf
+*.bat text eol=crlf
+*.zip binary
+*.png binary
+*.gif binary
+*.jpg binary
+*.ico binary
+*.phar binary
