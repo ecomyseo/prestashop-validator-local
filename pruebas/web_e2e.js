@@ -61,7 +61,33 @@ fetch(BASE + ruta, { cache: 'no-store' }).then(function (r) { return r.text(); }
     var oficial = Array.prototype.filter.call(d.querySelectorAll('a'), function (a) { return a.href === 'https://validator.prestashop.com/'; });
     ok(oficial.length >= 2, 'enlaces a validator.prestashop.com (' + oficial.length + ')');
     console.log('  resumen: ' + d.getElementById('vl-final').textContent.trim());
-    salir();
+    // Sección «Tras el 100 %»: se pinta sola tras la validación (y la carga es asíncrona)
+    var t0 = Date.now();
+    (function esperarT1() {
+      var caja = d.getElementById('vl-tras100');
+      if (caja && !/Cargando/.test(caja.textContent)) { return comprobarT1(caja); }
+      if (Date.now() - t0 > 15000) { ok(false, 'la sección «Tras el 100 %» no se pinta'); return salir(); }
+      setTimeout(esperarT1, 200);
+    })();
+  }
+  function comprobarT1(caja) {
+    ok(errores.length === 0, 'cero errores de JavaScript con la sección «Tras el 100 %»');
+    fetch(BASE + ruta.replace(/\/validate$/, '/tras100'), { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (t) {
+      var e = t.estado;
+      if (!e) {
+        ok(!!caja.querySelector('[data-tras100="lanzar"]') === (t.es100 && !t.puede), 'sin lanzar: botón solo si se puede');
+        return salir();
+      }
+      ok(caja.querySelectorAll('.t1-pasos li').length === e.pasos.length, 'un renglón por paso (' + e.pasos.length + ')');
+      ok(caja.querySelectorAll('.t1-galeria img').length === (e.capturas || []).length, 'galería con ' + (e.capturas || []).length + ' capturas');
+      ok(!e.video || !!caja.querySelector('video'), 'vídeo reproducible si lo hay');
+      ok(!e.pdf || !!caja.querySelector('a[href$="/tras100/pdf"]'), 'enlace al PDF si lo hay');
+      var pruebas = [];
+      if (e.pdf) { pruebas.push(fetch(BASE + ruta.replace(/\/validate$/, '/tras100/pdf'), { method: 'GET' }).then(function (r) { ok(r.status === 200 && /pdf/.test(r.headers.get('content-type')), 'el PDF se sirve (' + r.status + ')'); })); }
+      if (e.video) { pruebas.push(fetch(BASE + ruta.replace(/\/validate$/, '/tras100/video'), { headers: { Range: 'bytes=0-1023' } }).then(function (r) { ok(r.status === 206 && r.headers.get('content-length') === '1024', 'el vídeo se sirve por trozos (' + r.status + ')'); })); }
+      if (e.capturas && e.capturas.length) { var img = caja.querySelector('.t1-galeria img'); pruebas.push(fetch(new URL(img.getAttribute('src'), BASE).href).then(function (r) { ok(r.status === 200 && r.headers.get('content-type') === 'image/png', 'las capturas se sirven (' + r.status + ')'); })); }
+      Promise.all(pruebas).then(salir, function (err) { ok(false, String(err)); salir(); });
+    });
   }
   function salir() {
     console.log(fallos ? 'FALLOS: ' + fallos : 'TODO EN VERDE');
